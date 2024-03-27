@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Библиотека</title>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            * {
+                background: black;
+                color: white;
+            }
+        }
+        div {
+            width: 400px;
+        }
+        legend {
+            font-weight: bold;
+        }
+        label {
+            display: inline-block;
+            width: 120px;
+        }
+        input {
+            width: 200px;
+        }
+        em {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <form method="post">
+        <fieldset>
+        <legend>Вход</legend>
+        <input id="_csrf" name="_csrf" type="hidden"/>
+        <script>
+            document.getElementById('_csrf').value =
+                document.cookie.replace(/(?:(?:^|.*;\s*)XSRF-TOKEN\s*\=\s*([^;]*).*$)|^.*$/, '$1');
+        </script>
+        <p>
+            <label for="username">Пользователь</label>
+            <input type="text" id="username" name="username" required autofocus>
+        </p>
+        <p>
+            <label for="password">Пароль</label>
+            <input type="password" id="password" name="password" required autocomplete="on">
+        </p>
+        </fieldset>
+        <em>
+        <script>
+            if ((new URLSearchParams(window.location.search)).get('error') !== null) {
+                document.write('Ошибка входа');
+            }
+        </script>
+        </em><hr>
+        <button type="submit">Войти</button>
+    </form>
+</div>
+</body>
+</html>

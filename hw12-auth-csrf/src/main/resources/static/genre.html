@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Библиотека</title>
+    <link href="/style.css" rel="stylesheet"/>
+    <script src="/js/auth.js" type="text/javascript" charset="UTF-8"></script>
+    <script src="/js/genre.js" type="text/javascript" charset="UTF-8"></script>
+    <script src="/js/abstract_entity.js" type="text/javascript" charset="UTF-8" defer></script>
+</head>
+<body>
+<menu>
+    <li><a href="index.html">Книги</a></li>
+    <li><a href="author.html">Авторы</a></li>
+    <li><a href="genre.html" class="active">Жанры</a></li>
+    <li><a href="h2-console" target="_blank">H2 Console</a></li>
+    <li><a href="swagger-ui.html" target="_blank">Swagger UI</a></li>
+    <li><a href="logout">Выход</a></li>
+</menu>
+
+<dialog id="entity-dialog">
+    <form id="entity-form" method="dialog">
+        <input id="entity.id" type="hidden"/>
+        <fieldset id="entity-fieldset">
+            <legend>Жанр</legend>
+            <label for="entity.name">Наименование</label>
+            <input id="entity.name" type="text" required/>
+        </fieldset>
+        <em id="entity-result">Текст ошибки</em><hr>
+        <button id="submit-button">Применить</button>
+        <button value="cancel" formnovalidate>Закрыть</button>
+    </form>
+</dialog>
+
+<table>
+    <caption>
+        <button id="list-button">Обновить</button>
+        <button id="add-button">Добавить</button>
+    </caption>
+    <thead>
+    <tr>
+        <th>Наименование</th>
+        <th>Действия</th>
+    </tr>
+    </thead>
+    <tbody id="entities"><tr><td colspan="2">Нет данных</td></tr></tbody>
+</table>
+
+</body>
+</html>
