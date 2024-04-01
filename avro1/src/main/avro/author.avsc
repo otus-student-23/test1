@@ -1,0 +1,7 @@
+{"namespace": "org.example",
+  "type": "record",
+  "name": "Author",
+  "fields": [
+    {"name": "name", "type": "string"}
+  ]
+}

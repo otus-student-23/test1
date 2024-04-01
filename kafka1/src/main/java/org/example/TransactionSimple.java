@@ -23,7 +23,6 @@ public class TransactionSimple {
 
     private static final String TOPIC_2 = "topic2";
 
-
     public static void main(String[] args) {
         Util.recreateTopics(
                 BOOTSTRAP_SERVERS,

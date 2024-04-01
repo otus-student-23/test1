@@ -45,12 +45,10 @@ public class Replicas {
                     //ConsumerConfig.PARTITION_ASSIGNMENT_STRATEGY_CONFIG, List.of(RangeAssignor.class)//TODO
             ))) {
                 consumer.subscribe(List.of(TOPIC_1));
-                var read = consumer.poll(Duration.ofSeconds(5));
-                for (var record : read) {
-                    System.out.printf(
-                            "[RECV, %s.%s] %s:%s\n", record.topic(), record.partition(), record.key(), record.value()
-                    );
-                }
+                var records = consumer.poll(Duration.ofSeconds(5));
+                records.forEach(it ->
+                        System.out.printf("[RECV, %s.%s] %s:%s\n", it.topic(), it.partition(), it.key(), it.value())
+                );
             }
         }).start();
 

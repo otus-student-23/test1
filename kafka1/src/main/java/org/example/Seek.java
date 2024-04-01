@@ -59,8 +59,8 @@ public class Seek {
 
             boolean hasNext = true;
             while (hasNext) {
-                var read = consumer.poll(Duration.ofSeconds(1));
-                for (var record : read) {
+                var records = consumer.poll(Duration.ofSeconds(1));
+                for (var record : records) {
                     System.out.printf("[RECV] %s:%s\n", record.key(), record.value());
                     hasNext = record.value() < maxValue;
                 }

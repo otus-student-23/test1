@@ -63,6 +63,7 @@ services:
     ports:
 #!!!      - "9192:9192"
       - "9092:9092"
+
   kafka3:
     image: confluentinc/cp-kafka:7.0.9
     container_name: kafka3-kafka

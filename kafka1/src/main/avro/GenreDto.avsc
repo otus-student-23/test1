@@ -1,0 +1,8 @@
+{"namespace": "org.example",
+  "type": "record",
+  "name": "GenreDto",
+  "fields": [
+    {"name": "name", "type": "string"}
+    //{"name": "email", "type": ["string", "null"], "default": "null"}
+  ]
+}

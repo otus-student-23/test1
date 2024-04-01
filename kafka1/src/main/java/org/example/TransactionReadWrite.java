@@ -26,7 +26,6 @@ public class TransactionReadWrite {
 
     private static final String TOPIC_2 = "topic2";
 
-
     public static void main(String[] args) {
         Util.recreateTopics(
                 BOOTSTRAP_SERVERS,
@@ -93,7 +92,7 @@ public class TransactionReadWrite {
                     var read = consumer.poll(Duration.ofSeconds(1));
                     for (var record : read) {
                         System.out.printf("[RECV] %s:%s\n", record.key(), record.value());
-                        hasNext = record.value() < maxValue;
+                        hasNext = record.value() > maxValue;
                     }
                 }
             }
