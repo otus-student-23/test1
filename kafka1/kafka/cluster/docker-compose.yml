@@ -3,11 +3,11 @@ services:
   zookeeper:
     image: confluentinc/cp-zookeeper:7.0.9
     container_name: zookeeper-kafka
-    healthcheck:
-      test: "[[ $$(echo srvr | nc localhost 2181 | grep -oG 'Mode: standalone') = \"Mode: standalone\" ]]"
-      interval: 10s
-      timeout: 1s
-      retries: 30
+#    healthcheck:
+#      test: "[[ $$(echo srvr | nc localhost 2181 | grep -oG 'Mode: standalone') = \"Mode: standalone\" ]]"
+#      interval: 10s
+#      timeout: 1s
+#      retries: 30
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
@@ -18,13 +18,15 @@ services:
     image: confluentinc/cp-kafka:7.0.9
     container_name: kafka1-kafka
     depends_on:
-      zookeeper:
-        condition: service_healthy
-    healthcheck:
-      test: "test $$( /usr/bin/zookeeper-shell zookeeper:2181 get /brokers/ids/1 | grep { ) != ''"
-      interval: 3s
-      timeout: 2s
-      retries: 300
+      - zookeeper
+#    depends_on:
+#      zookeeper:
+#        condition: service_healthy
+#    healthcheck:
+#      test: "test $$( /usr/bin/zookeeper-shell zookeeper:2181 get /brokers/ids/1 | grep { ) != ''"
+#      interval: 3s
+#      timeout: 2s
+#      retries: 300
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
@@ -36,20 +38,22 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
     ports:
-#!!!      - "9191:9191"
+#      - "9191:9191"
       - "9091:9091"
 
   kafka2:
     image: confluentinc/cp-kafka:7.0.9
     container_name: kafka2-kafka
     depends_on:
-      zookeeper:
-        condition: service_healthy
-    healthcheck:
-      test: "test $$( /usr/bin/zookeeper-shell zookeeper:2181 get /brokers/ids/1 | grep { ) != ''"
-      interval: 3s
-      timeout: 2s
-      retries: 300
+      - zookeeper
+#    depends_on:
+#      zookeeper:
+#        condition: service_healthy
+#    healthcheck:
+#      test: "test $$( /usr/bin/zookeeper-shell zookeeper:2181 get /brokers/ids/1 | grep { ) != ''"
+#      interval: 3s
+#      timeout: 2s
+#      retries: 300
     environment:
       KAFKA_BROKER_ID: 2
       KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
@@ -61,20 +65,22 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
     ports:
-#!!!      - "9192:9192"
+#      - "9192:9192"
       - "9092:9092"
 
   kafka3:
     image: confluentinc/cp-kafka:7.0.9
     container_name: kafka3-kafka
     depends_on:
-      zookeeper:
-        condition: service_healthy
-    healthcheck:
-      test: "test $$( /usr/bin/zookeeper-shell zookeeper:2181 get /brokers/ids/1 | grep { ) != ''"
-      interval: 3s
-      timeout: 2s
-      retries: 300
+      - zookeeper
+#    depends_on:
+#      zookeeper:
+#        condition: service_healthy
+#    healthcheck:
+#      test: "test $$( /usr/bin/zookeeper-shell zookeeper:2181 get /brokers/ids/1 | grep { ) != ''"
+#      interval: 3s
+#      timeout: 2s
+#      retries: 300
     environment:
       KAFKA_BROKER_ID: 3
       KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
@@ -86,19 +92,21 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
     ports:
-#!!!      - "9193:9193"
+#      - "9193:9193"
       - "9093:9093"
   kafka4:
     image: confluentinc/cp-kafka:7.0.9
     container_name: kafka4-kafka
     depends_on:
-      zookeeper:
-        condition: service_healthy
-    healthcheck:
-      test: "test $$( /usr/bin/zookeeper-shell zookeeper:2181 get /brokers/ids/1 | grep { ) != ''"
-      interval: 3s
-      timeout: 2s
-      retries: 300
+      - zookeeper
+#    depends_on:
+#      zookeeper:
+#        condition: service_healthy
+#    healthcheck:
+#      test: "test $$( /usr/bin/zookeeper-shell zookeeper:2181 get /brokers/ids/1 | grep { ) != ''"
+#      interval: 3s
+#      timeout: 2s
+#      retries: 300
     environment:
       KAFKA_BROKER_ID: 4
       KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
@@ -110,20 +118,22 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
     ports:
-#!!!      - "9194:9194"
+#      - "9194:9194"
       - "9094:9094"
 
   kafka5:
     image: confluentinc/cp-kafka:7.0.9
     container_name: kafka5-kafka
     depends_on:
-      zookeeper:
-        condition: service_healthy
-    healthcheck:
-      test: "test $$( /usr/bin/zookeeper-shell zookeeper:2181 get /brokers/ids/1 | grep { ) != ''"
-      interval: 3s
-      timeout: 2s
-      retries: 300
+      - zookeeper
+#    depends_on:
+#      zookeeper:
+#        condition: service_healthy
+#    healthcheck:
+#      test: "test $$( /usr/bin/zookeeper-shell zookeeper:2181 get /brokers/ids/1 | grep { ) != ''"
+#      interval: 3s
+#      timeout: 2s
+#      retries: 300
     environment:
       KAFKA_BROKER_ID: 5
       KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
@@ -135,11 +145,11 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
     ports:
-#!!!      - "9195:9195"
+#      - "9195:9195"
       - "9095:9095"
 
   kafdrop:
-#!!! http://localhost:9000/
+# http://localhost:9000/
     image: obsidiandynamics/kafdrop:4.0.1
     container_name: kafdrop-kafka
     restart: "no"
@@ -147,16 +157,16 @@ services:
       - "9000:9000"
     environment:
       KAFKA_BROKERCONNECT: "kafka2:9192"
-#!!!  JVM_OPTS: "-Xms16M -Xmx48M -Xss180K -XX:-TieredCompilation -XX:+UseStringDeduplication -noverify"
-#!!! add SCHEMAREGISTRY_CONNECT
+#  JVM_OPTS: "-Xms16M -Xmx48M -Xss180K -XX:-TieredCompilation -XX:+UseStringDeduplication -noverify"
+# add SCHEMAREGISTRY_CONNECT
       SCHEMAREGISTRY_CONNECT: "http://schema-registry:8081"
     depends_on:
       - "kafka2"
 
   schema-registry:
-#!!! http://localhost:8081/subjects
-#!!! http://localhost:8081/subjects/topic1-value/versions/1
-#!!! http://localhost:8081/schemas/ids/1
+# http://localhost:8081/subjects
+# http://localhost:8081/subjects/topic1-value/versions/1
+# http://localhost:8081/schemas/ids/1
     image: confluentinc/cp-schema-registry:7.5.3
     hostname: schema-registry
     depends_on:
@@ -171,7 +181,7 @@ services:
       SCHEMA_REGISTRY_DEBUG: 'true'
 
   kafka-rest:
-#!!! http://localhost:8082/topics
+# http://localhost:8082/topics
     image: confluentinc/cp-kafka-rest:4.1.1
     hostname: kafka-rest
     ports:
