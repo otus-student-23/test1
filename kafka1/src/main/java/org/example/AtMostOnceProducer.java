@@ -16,7 +16,7 @@ import java.time.Duration;
 import java.util.List;
 import java.util.Map;
 
-public class IdempotentProducer {
+public class AtMostOnceProducer {
 
     private static final String BOOTSTRAP_SERVERS = "localhost:9092";
 
@@ -56,7 +56,7 @@ public class IdempotentProducer {
 
                 //watch 'ss -tnp dport :9092'
                 //sudo ss --kill dport :9092 sport :53796
-                ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, false//FIXME ENABLE_IDEMPOTENCE_CONFIG = true
+                ProducerConfig.ACKS_CONFIG, "0"//at-most-once producer
         ))) {
             int i = 0;
             while (!Thread.interrupted()) {
