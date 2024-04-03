@@ -24,12 +24,12 @@ public class CompactBySegmentBytes {
 
     public static void main(String[] args) throws Exception {
         Util.recreateTopics(BOOTSTRAP_SERVERS, List.of(
-                        new NewTopic(TOPIC_1, 1, (short) 1)
-                                .configs(Map.of(
-                                        TopicConfig.CLEANUP_POLICY_CONFIG, TopicConfig.CLEANUP_POLICY_COMPACT,
-                                        //TopicConfig.RETENTION_BYTES_CONFIG, "512"
-                                        TopicConfig.SEGMENT_BYTES_CONFIG, "512"//~17 сегментов, по 6 сообщений в сегменте
-                                ))
+                new NewTopic(TOPIC_1, 1, (short) 1)
+                        .configs(Map.of(
+                                TopicConfig.CLEANUP_POLICY_CONFIG, TopicConfig.CLEANUP_POLICY_COMPACT,
+                                //TopicConfig.RETENTION_BYTES_CONFIG, "512"
+                                TopicConfig.SEGMENT_BYTES_CONFIG, "512"//~17 сегментов, по 6 сообщений в сегменте
+                        ))
         ));
 
         int maxValue = 100;

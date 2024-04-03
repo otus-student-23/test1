@@ -45,7 +45,9 @@ public class SerdeAvro {
                             GenreDto.newBuilder()
                                     .setName(FAKER.book().genre())
                                     .build()
-                    ), (meta, error) -> { if (error != null) error.printStackTrace(); }
+                    ), (meta, error) -> {
+                        if (error != null) error.printStackTrace();
+                    }
             );
         }
 
